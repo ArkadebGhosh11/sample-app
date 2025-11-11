@@ -1,0 +1,4 @@
+name: sample-app
+image: nginx:stable
+replicas: 1
+container_port: 80
