@@ -1,0 +1,16 @@
+name: Trigger GENAI DevOps Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  call-orchestrator:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger FastAPI DevOps Orchestrator
+        run: |
+          curl -X POST "https://propraetorial-gastroenteric-sulema.ngrok-free.dev/start_pipeline" \
+               -H "Content-Type: application/json" \
+               -d '{"repo_url": "https://github.com/ArkadebGhosh11/sample-app.git", "branch": "main"}'
