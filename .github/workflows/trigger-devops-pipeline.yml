@@ -1,4 +1,4 @@
-name: Trigger GENAI DevOps Pipeline On Push to Main
+name: Trigger GENAI DevOps Pipeline On Push to Main Branch
 
 on:
   push:
