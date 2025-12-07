@@ -1,4 +1,12 @@
-name: sample-app
-image: nginx:stable
+app_name: sample-app
 replicas: 1
-container_port: 80
+service_type: NodePort
+
+# These will be auto-corrected by deploy_agent.py based on Node.js detection
+# but you can keep them here for clarity:
+container_port: 3000
+service_port: 3000
+
+# Optional: environment variables for your Node.js app
+env:
+  NODE_ENV: "production"
