@@ -14,11 +14,28 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Show repository structure (debug)
+      # NEW — Fetch ALL remote branches including artifact branches
+      - name: Fetch all branches
         run: |
-          echo "=== REPO ROOT ==="
+          git fetch --all --prune
+          echo "=== Remote branches ==="
+          git branch -a
+
+      # NEW — Try to find any artifact*.zip in the artifact branches
+      - name: Search for artifacts in remote branches
+        run: |
+          echo "=== Searching for artifact.zip in all branches ==="
+          for br in $(git branch -a | grep remotes | grep artifact); do
+            echo ">> Checking branch: $br"
+            git checkout --force $br || continue
+            find . -maxdepth 5 -name "*.zip" -print
+            echo "------------------------"
+          done
+
+      - name: Show main repo structure (debug)
+        run: |
+          echo "=== MAIN BRANCH STRUCTURE ==="
           ls -la
-          echo "=== REPO CONTENTS (recursive, first 200 entries) ==="
           find . -maxdepth 5 -type f | sed -n '1,200p'
 
       - name: Trigger FastAPI DevOps Orchestrator
