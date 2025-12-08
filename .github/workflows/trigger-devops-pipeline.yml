@@ -1,4 +1,4 @@
-name: Trigger GENAI DevOps Pipeline On Push to Main  - Test pipeline trigger
+name: Trigger GENAI DevOps Pipeline On Push to Main - Test pipeline trigger
 
 on:
   push:
@@ -9,8 +9,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Show repository structure (debug)
+        run: |
+          echo "=== REPO ROOT ==="
+          ls -la
+          echo "=== REPO CONTENTS (recursive, first 200 entries) ==="
+          find . -maxdepth 5 -type f | sed -n '1,200p'
+
       - name: Trigger FastAPI DevOps Orchestrator
         run: |
-          curl -X POST "https://propraetorial-gastroenteric-sulema.ngrok-free.dev/start_pipeline" \
+          curl -X POST "hhttps://propraetorial-gastroenteric-sulema.ngrok-free.dev/start_pipeline" \
                -H "Content-Type: application/json" \
                -d '{"repo_url": "https://github.com/ArkadebGhosh11/sample-app.git", "branch": "main"}'
