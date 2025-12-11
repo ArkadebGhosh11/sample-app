@@ -1,4 +1,4 @@
-name: Trigger GENAI DevOps Pipeline On Push to Main Branch - pipeline trigger for testing
+name: Trigger GENAI DevOps Pipeline On Push to Main Branch - pipeline trigger for testing DevOps agent
 
 on:
   push:
