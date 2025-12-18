@@ -1,4 +1,4 @@
-name: Trigger GENAI DevOps Pipeline On Push to Main Branch - pipeline trigger for Demo
+name: Trigger GENAI DevOps Pipeline On Push to Main Branch - pipeline trigger for DevOps AI Agent Demo
 
 on:
   push:
